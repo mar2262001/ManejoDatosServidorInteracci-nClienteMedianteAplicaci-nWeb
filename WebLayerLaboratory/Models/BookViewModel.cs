@@ -1,6 +1,8 @@
-﻿namespace ModelLayerLaboratory
+﻿using ModelLayerLaboratory;
+
+namespace WebLayerLaboratory.Models
 {
-	public class BookModel
+	public class BookViewModel
 	{
 		public int Id { get; set; }
 
@@ -8,7 +10,7 @@
 
 		public string? Editorial { get; set; }
 
-		public CountryModel? Country { get; set; }
+		public CountryViewModel? Country { get; set; }
 
 		public string? Author { get; set; }
 

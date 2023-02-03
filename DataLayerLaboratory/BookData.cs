@@ -18,7 +18,7 @@ namespace DataLayerLaboratory
 			using (var connection = new MySqlConnection(ConnString))
 			{
 				SqlQuery = $"SELECT book.Id, book.CountryId, book.Title, book.Editorial, book.Author, book.Year,  country.Id, country.Name FROM book AS book INNER JOIN country AS country ON book.CountryId = country.Id";
-				return connection.Query<BookModel>("");
+				return connection.Query<BookModel>(SqlQuery);
 			}
 		}
 
