@@ -17,19 +17,28 @@ namespace DataLayerLaboratory
 		{
 			using (var connection = new MySqlConnection(ConnString))
 			{
-				SqlQuery = $"SELECT book.Id, book.CountryId, book.Title, book.Editorial, book.Author, book.Year,  country.Id, country.Name FROM book AS book INNER JOIN country AS country ON book.CountryId = country.Id";
+				SqlQuery = $"SELECT Id, CountryId, Title, Editorial, Author, Year FROM book;";
 				return connection.Query<BookModel>(SqlQuery);
 			}
 		}
 
-		public IEnumerable<BookModel> GetBookModels(string name)
+        public BookModel GetBookModel(int id)
+        {
+            using (var connection = new MySqlConnection(ConnString))
+            {
+                SqlQuery = $"SELECT Id, CountryId, Title, Editorial, Author, Year FROM book WHERE Id = @id;";
+                ParamQuery = new { id = id };
+				return connection.Query<BookModel>(SqlQuery, ParamQuery).FirstOrDefault();
+            }
+        }
+
+        public IEnumerable<BookModel> GetBookModels(string name)
 		{
 			using (var connection = new MySqlConnection(ConnString))
 			{
-				SqlQuery = $"SELECT book.Id, book.CountryId, book.Title, book.Editorial, book.Author, book.Year,  country.Id, country.Name FROM book AS book INNER JOIN country AS country ON book.CountryId = country.Id WHERE book.Title = @title";
+				SqlQuery = $"SELECT Id, CountryId, Title, Editorial, Author, Year FROM book WHERE book.Title = @title";
 				ParamQuery = new { title = name};
-				var queryResult = connection.Query<BookModel>(SqlQuery, SqlQuery);
-				return queryResult;
+				return connection.Query<BookModel>(SqlQuery, SqlQuery);
 			}
 		}
 
@@ -37,21 +46,24 @@ namespace DataLayerLaboratory
 		{
 			using (var connection = new MySqlConnection(ConnString))
 			{
-				SqlQuery = $"DELETE FROM computaciónservidorwebunir.book WHERE Id @id;";
+                connection.Open();
+                SqlQuery = $"DELETE FROM book WHERE Id = @id;";
 				ObjMySqlCommand.Parameters.Add("@id", MySqlDbType.Int16).Value = id;
 				ObjMySqlCommand.Connection = connection;
 				ObjMySqlCommand.CommandText = SqlQuery;
 				ObjMySqlCommand.ExecuteNonQuery();
-			}
+                connection.Close();
+            }
 		}
 
-		public void PutBookModels(BookModel objBookModel)
+		public void PutBookModel(BookModel objBookModel)
 		{
 			using (var connection = new MySqlConnection(ConnString))
 			{
-				SqlQuery = $"UPDATE computaciónservidorwebunir.book SET CountryId = @CountryId, Title = @Title, Editorial = @Editorial, Author = @Author, Year = @Year WHERE Id = @Id;";
-				ObjMySqlCommand.Parameters.Add("@Id", MySqlDbType.Int16).Value = objBookModel.Country.Id;
-				ObjMySqlCommand.Parameters.Add("@CountryId", MySqlDbType.Int16).Value = objBookModel.Country.Id;
+                connection.Open();
+                SqlQuery = $"UPDATE book SET CountryId = @CountryId, Title = @Title, Editorial = @Editorial, Author = @Author, Year = @Year WHERE Id = @Id;";
+				ObjMySqlCommand.Parameters.Add("@Id", MySqlDbType.Int16).Value = objBookModel.Id;
+				ObjMySqlCommand.Parameters.Add("@CountryId", MySqlDbType.Int16).Value = objBookModel.CountryId;
 				ObjMySqlCommand.Parameters.Add("@Title", MySqlDbType.VarChar).Value = objBookModel.Title;
 				ObjMySqlCommand.Parameters.Add("@Editorial", MySqlDbType.VarChar).Value = objBookModel.Editorial;
 				ObjMySqlCommand.Parameters.Add("@Author", MySqlDbType.VarChar).Value = objBookModel.Author;
@@ -59,15 +71,17 @@ namespace DataLayerLaboratory
 				ObjMySqlCommand.Connection = connection;
 				ObjMySqlCommand.CommandText = SqlQuery;
 				ObjMySqlCommand.ExecuteNonQuery();
-			}
+                connection.Close();
+            }
 		}
 
-		public void PostBookModels(BookModel objBookModel)
+		public void PostBookModel(BookModel objBookModel)
 		{
 			using (var connection = new MySqlConnection(ConnString))
 			{
-				SqlQuery = $"INSERT INTO computaciónservidorwebunir.book (CountryId, Title, Editorial, Author, Year ) VALUES ( @CountryId, @Title, @Editorial, @Author, @Year);";
-				ObjMySqlCommand.Parameters.Add("@CountryId", MySqlDbType.Int16).Value = objBookModel.Country.Id;
+				connection.Open();
+                SqlQuery = $"INSERT INTO book (CountryId, Title, Editorial, Author, Year ) VALUES ( @CountryId, @Title, @Editorial, @Author, @Year);";
+				ObjMySqlCommand.Parameters.Add("@CountryId", MySqlDbType.Int16).Value = objBookModel.CountryId;
 				ObjMySqlCommand.Parameters.Add("@Title", MySqlDbType.VarChar).Value = objBookModel.Title;
 				ObjMySqlCommand.Parameters.Add("@Editorial", MySqlDbType.VarChar).Value = objBookModel.Editorial;
 				ObjMySqlCommand.Parameters.Add("@Author", MySqlDbType.VarChar).Value = objBookModel.Author;
@@ -75,7 +89,8 @@ namespace DataLayerLaboratory
 				ObjMySqlCommand.Connection = connection;
 				ObjMySqlCommand.CommandText = SqlQuery;
 				ObjMySqlCommand.ExecuteNonQuery();
-			}
+                connection.Close();
+            }
 		}
 	}
 }

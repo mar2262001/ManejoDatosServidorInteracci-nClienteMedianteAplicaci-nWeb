@@ -1,0 +1,57 @@
+﻿@model DataIndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <div class="row">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+    <div class="row">
+        <div class="col-10">
+            <select class="form-select" aria-label="Default select example">
+                <option selected>--</option>
+                @foreach (var itm in Model.LstCountry)
+                {
+                    <option value="@itm.Id">@itm.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-2">
+            @Html.ActionLink("Nuevo", "CreateView", "BooksCatalog", null, new { @class = "btn btn-primary"})
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Título</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Editorial</th>
+                        <th scope="col">Pais</th>
+                        <th scope="col">Año</th>
+                        <th scope="col">Eliminar</th>
+                        <th scope="col">Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var itm in Model.LstBook)
+                    {
+                        <tr>
+                            <th scope="col">@itm.Title</th>
+                            <th scope="col">@itm.Author</th>
+                            <th scope="col">@itm.Editorial</th>
+                            <th scope="col">@itm.ObjCountryViewModel?.Name</th>
+                            <th scope="col">@itm.Year</th>
+                            <th scope="col">@Html.ActionLink("Editar", "CreateView", "BooksCatalog", new { id = itm.Id }, new { @class = "btn btn-secondary"})</th>
+                            <th scope="col">@Html.ActionLink("Eliminar", "Delete", "BooksCatalog", new { id = itm.Id }, new { @class = "btn btn-warning"})</th>
+                         </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

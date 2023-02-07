@@ -6,35 +6,56 @@ namespace BusinessLayerLaboratory
 	public class BookBusiness
 	{
 		public BookData objBookData { get; set; }
+		public CountryData objCountryData { get; set; }
 
 		public BookBusiness()
 		{
 			objBookData = new BookData();
-		}
+			objCountryData = new CountryData();
+
+        }
 
 		public IEnumerable<BookModel> GetBookModels()
 		{
-			return objBookData.GetBookModels();
+			var lstBookModel = objBookData.GetBookModels();
+			foreach (BookModel itm in lstBookModel) {
+				itm.ObjCountryModel = objCountryData.GetCountryModel(itm.CountryId);
+
+            }
+			return lstBookModel;
 		}
 
-		public IEnumerable<BookModel> GetBookModels(string name)
+        public BookModel GetBookModel(int id)
+        {
+            BookModel objBookModel = objBookData.GetBookModel(id);
+            objBookModel.ObjCountryModel = objCountryData.GetCountryModel(id);
+			return objBookModel;
+        }
+
+        public IEnumerable<BookModel> GetBookModels(string name)
 		{
-			return objBookData.GetBookModels(name);
-		}
+            var lstBookModel = objBookData.GetBookModels(name);
+            foreach (BookModel itm in lstBookModel)
+            {
+                itm.ObjCountryModel = objCountryData.GetCountryModel(itm.CountryId);
+
+            }
+            return lstBookModel;
+        }
 
 		public void DelBookModel(int id)
 		{
 			objBookData.DelBookModel(id);
 		}
 
-		public void PutBookModels(BookModel objBookModel)
+		public void PutBookModel(BookModel objBookModel)
 		{
-			objBookData.PutBookModels(objBookModel);
+			objBookData.PutBookModel(objBookModel);
 		}
 
-		public void PostBookModels(BookModel objBookModel)
+		public void PostBookModel(BookModel objBookModel)
 		{
-			objBookData.PostBookModels(objBookModel);
+			objBookData.PostBookModel(objBookModel);
 		}
 	}
 }

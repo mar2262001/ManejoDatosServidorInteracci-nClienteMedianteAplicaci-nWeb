@@ -22,5 +22,15 @@ namespace DataLayerLaboratory
 				return queryResult;
 			}
 		}
-	}
+
+        public CountryModel GetCountryModel(int id)
+        {
+            using (var connection = new MySqlConnection(ConnString))
+            {
+                SqlQuery = $"SELECT Id, Name FROM Country WHERE Id = @id";
+                ParamQuery = new { id = id };
+                return connection.Query<CountryModel>(SqlQuery, ParamQuery).FirstOrDefault();
+            }
+        }
+    }
 }
