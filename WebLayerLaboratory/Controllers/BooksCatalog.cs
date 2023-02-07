@@ -17,10 +17,19 @@ namespace WebLayerLaboratory.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int? contryId)
         {
-            return View(new DataIndexViewModel { LstCountry = _mapper.Map<IEnumerable<CountryViewModel>>(new CountryBusiness().GetCountryModels()), LstBook = _mapper.Map<IEnumerable<BookViewModel>>(new BookBusiness().GetBookModels()) });
+            IEnumerable<BookViewModel> lstBookViewModel = new List<BookViewModel>();
+            if (contryId > 0)
+            {
+                lstBookViewModel = _mapper.Map<IEnumerable<BookViewModel>>(new BookBusiness().GetBookModels(contryId.Value));
+            }
+            else 
+            {
+                lstBookViewModel = _mapper.Map<IEnumerable<BookViewModel>>(new BookBusiness().GetBookModels());
+            }
+
+            return View(new DataIndexViewModel { LstCountry = _mapper.Map<IEnumerable<CountryViewModel>>(new CountryBusiness().GetCountryModels()), LstBook = lstBookViewModel });
         }
 
         [HttpGet]

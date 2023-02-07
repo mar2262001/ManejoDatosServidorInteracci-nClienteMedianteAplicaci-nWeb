@@ -8,20 +8,26 @@
         <h1 class="display-4">Welcome</h1>
         <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     </div>
-    <div class="row">
-        <div class="col-10">
-            <select class="form-select" aria-label="Default select example">
-                <option selected>--</option>
-                @foreach (var itm in Model.LstCountry)
-                {
-                    <option value="@itm.Id">@itm.Name</option>
-                }
-            </select>
+    @using (Html.BeginForm("Index", "BooksCatalog", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-8">
+                <select id="contryId" name="contryId" class="form-select" aria-label="Default select example">
+                    <option value="0" selected>Todos</option>
+                    @foreach (var itm in Model.LstCountry)
+                    {
+                        <option value="@itm.Id">@itm.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="col-2">
+                <button type="submit" class="btn btn-success">BUSCAR</button>
+            </div>
+            <div class="col-2">
+                @Html.ActionLink("Nuevo", "CreateView", "BooksCatalog", null, new { @class = "btn btn-primary"})
+            </div>
         </div>
-        <div class="col-2">
-            @Html.ActionLink("Nuevo", "CreateView", "BooksCatalog", null, new { @class = "btn btn-primary"})
-        </div>
-    </div>
+    }
     <div class="row">
         <div class="col-12">
             <table class="table table-striped">

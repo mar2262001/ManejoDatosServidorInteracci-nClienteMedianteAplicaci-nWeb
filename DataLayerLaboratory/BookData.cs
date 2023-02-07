@@ -32,13 +32,13 @@ namespace DataLayerLaboratory
             }
         }
 
-        public IEnumerable<BookModel> GetBookModels(string name)
+        public IEnumerable<BookModel> GetBookModels(int contryId)
 		{
 			using (var connection = new MySqlConnection(ConnString))
 			{
-				SqlQuery = $"SELECT Id, CountryId, Title, Editorial, Author, Year FROM book WHERE book.Title = @title";
-				ParamQuery = new { title = name};
-				return connection.Query<BookModel>(SqlQuery, SqlQuery);
+				SqlQuery = $"SELECT Id, CountryId, Title, Editorial, Author, Year FROM book WHERE CountryId = @contryId";
+				ParamQuery = new { contryId = contryId };
+				return connection.Query<BookModel>(SqlQuery, ParamQuery);
 			}
 		}
 

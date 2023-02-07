@@ -32,9 +32,9 @@ namespace BusinessLayerLaboratory
 			return objBookModel;
         }
 
-        public IEnumerable<BookModel> GetBookModels(string name)
+        public IEnumerable<BookModel> GetBookModels(int contryId)
 		{
-            var lstBookModel = objBookData.GetBookModels(name);
+            var lstBookModel = objBookData.GetBookModels(contryId);
             foreach (BookModel itm in lstBookModel)
             {
                 itm.ObjCountryModel = objCountryData.GetCountryModel(itm.CountryId);
