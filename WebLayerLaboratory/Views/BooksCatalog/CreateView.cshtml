@@ -4,8 +4,7 @@
 }
 
 <div class="bd-content ps-lg-2">
-    <h2 id="example">Example <a class="anchor-link" href="#example" aria-label="Link to this section: Example"></a></h2>
-    <p>Form controls are styled with a mix of Sass and CSS variables, allowing them to adapt to color modes and support any customization method.</p>
+    <h2 id="example">Catalogo de libros</h2>
     <div class="bd-example-snippet bd-code-snippet">
         @using (Html.BeginForm("Create", "BooksCatalog", FormMethod.Post))  
         {
@@ -30,7 +29,7 @@
                         @foreach (var itm in Model.LstCountry)
                         {
                             var selected = itm.Id == Model.ObjBook?.ObjCountryViewModel?.Id ? "selected" : null;
-                            <option selected="@selected"   value="@itm.Id">@itm.Name</option>
+                            <option selected="@selected"  value="@itm.Id">@itm.Name</option>
                         }
                     </select>
                 </div>

@@ -5,8 +5,8 @@
 
 <div class="text-center">
     <div class="row">
-        <h1 class="display-4">Welcome</h1>
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <h1 class="display-4">UNIR</h1>
+        <p><span class="font-weight-bold">Computación en el Servidor Web </span><a href="https://github.com/mar2262001/ManejoDatosServidorInteracci-nClienteMedianteAplicaci-nWeb.git">Laboratorio:</a> Manejo de datos en el servidor e interacción con el cliente mediante una aplicación web.</p>
     </div>
     @using (Html.BeginForm("Index", "BooksCatalog", FormMethod.Post))
     {
@@ -16,7 +16,8 @@
                     <option value="0" selected>Todos</option>
                     @foreach (var itm in Model.LstCountry)
                     {
-                        <option value="@itm.Id">@itm.Name</option>
+                        var selected = (itm.Id == Model.CountryId ? "selected" : null);
+                        <option selected="@selected" value="@itm.Id">@itm.Name</option>
                     }
                 </select>
             </div>

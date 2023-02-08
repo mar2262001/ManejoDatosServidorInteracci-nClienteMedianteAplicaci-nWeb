@@ -29,7 +29,7 @@ namespace WebLayerLaboratory.Controllers
                 lstBookViewModel = _mapper.Map<IEnumerable<BookViewModel>>(new BookBusiness().GetBookModels());
             }
 
-            return View(new DataIndexViewModel { LstCountry = _mapper.Map<IEnumerable<CountryViewModel>>(new CountryBusiness().GetCountryModels()), LstBook = lstBookViewModel });
+            return View(new DataIndexViewModel { LstCountry = _mapper.Map<IEnumerable<CountryViewModel>>(new CountryBusiness().GetCountryModels()), LstBook = lstBookViewModel, CountryId = contryId != null ? contryId.Value : 0 });
         }
 
         [HttpGet]

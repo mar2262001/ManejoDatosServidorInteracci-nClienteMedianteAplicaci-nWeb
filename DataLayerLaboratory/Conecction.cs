@@ -20,7 +20,7 @@ namespace DataLayerLaboratory
 			conn_string.Port = 3306;
 			conn_string.UserID = "root";
 			conn_string.Password = "";
-			conn_string.Database = "computaciónservidorwebunir";
+			conn_string.Database = "unir_computacion_servidor_web";
 
 			ConnString = conn_string.ToString();
 		}

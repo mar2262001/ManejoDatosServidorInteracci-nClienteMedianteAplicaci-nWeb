@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayerLaboratory", "DataLayerLaboratory\DataLayerLaboratory.csproj", "{08E94795-E51A-4CB4-A74C-BF6F9F145A7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayerLaboratory", "DataLayerLaboratory\DataLayerLaboratory.csproj", "{08E94795-E51A-4CB4-A74C-BF6F9F145A7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelLayerLaboratory", "ModelLayerLaboratory\ModelLayerLaboratory.csproj", "{5E0E083B-6E15-4075-A341-5122D56C941B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelLayerLaboratory", "ModelLayerLaboratory\ModelLayerLaboratory.csproj", "{5E0E083B-6E15-4075-A341-5122D56C941B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayerLaboratory", "BusinessLayerLaboratory\BusinessLayerLaboratory.csproj", "{6947CB81-09B6-401A-BA23-5D713765B39D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayerLaboratory", "BusinessLayerLaboratory\BusinessLayerLaboratory.csproj", "{6947CB81-09B6-401A-BA23-5D713765B39D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLayerLaboratory", "WebLayerLaboratory\WebLayerLaboratory.csproj", "{08124282-429B-4593-B64A-B76EC33B372A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebLayerLaboratory", "WebLayerLaboratory\WebLayerLaboratory.csproj", "{08124282-429B-4593-B64A-B76EC33B372A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
